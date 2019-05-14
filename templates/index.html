@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+  <title>Upload File</title>
+    <h1>Photo Upload</h1>
+      <form method=post enctype=multipart/form-data>
+           <input type=file name=file>
+           <input type=submit value=upload>
+      </form>
+      {% if flag %}
+      <br><img src={{file_url}}>
+      <div>{{emotion}}</div>
+      {% else %}
+      {% endif %}
