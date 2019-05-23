@@ -46,7 +46,7 @@ fclose(f);
 if isunix
     command = '!./sift ';
 else
-    command = '!siftWin32';
+    command = '!C:\Users\Admin\PycharmProjects\Emotion_Detection\MATLAB\Balance\siftDemoV4\siftWin32';
 %     command = '!./sift ';
 end
 command = [command ' <tmp.pgm> tmp.key'];

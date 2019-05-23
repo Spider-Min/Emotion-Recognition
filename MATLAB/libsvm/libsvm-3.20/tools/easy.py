@@ -22,7 +22,7 @@ else:
 	svmscale_exe = r"..\windows\svm-scale.exe"
 	svmtrain_exe = r"..\windows\svm-train.exe"
 	svmpredict_exe = r"..\windows\svm-predict.exe"
-	gnuplot_exe = r"C:\Users\Admin\PycharmProjects\new_flask\MATLAB\libsvm\gnuplot\bin\gnuplot.exe"
+	gnuplot_exe = r"C:\Users\Admin\PycharmProjects\Emotion_Detection\MATLAB\libsvm\gnuplot\bin\gnuplot.exe"
 	grid_py = r".\grid.py"
 
 assert os.path.exists(svmscale_exe),"svm-scale executable not found"

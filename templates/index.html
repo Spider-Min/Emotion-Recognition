@@ -1,12 +1,81 @@
 <!DOCTYPE html>
   <title>Upload File</title>
-    <h1>Photo Upload</h1>
-      <form method=post enctype=multipart/form-data>
-           <input type=file name=file>
-           <input type=submit value=upload>
-      </form>
-      {% if flag %}
-      <br><img src={{file_url}}>
-      <div>{{emotion}}</div>
-      {% else %}
-      {% endif %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<style>
+  .main{
+    text-align: center; /*让div内部文字居中*/
+    background-color: #fff;
+    border-radius: 20px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+</style>
+<body>
+  <div class="main">
+      <h1>Visual DB: Emotion Classification</h1>
+        <form method=post enctype=multipart/form-data>
+             <input class="btn btn-warning"  id="img_input2" type=file name=file>
+             <input class="btn btn-success" id="upload" type=submit value=Upload>
+        </form>
+      <div id="preview_box2"></div>
+
+
+      <script type = "text/javascript">
+          $("#img_input2").on("change", function(e) {
+          $("#afterUpload div").empty()
+          var file = e.target.files[0]; //获取图片资源
+
+          // 只选择图片文件
+          if (!file.type.match('image.*')) {
+            return false;
+          }
+
+          var reader = new FileReader();
+          console.log(file)
+          reader.readAsDataURL(file); // 读取文件
+
+          // 渲染文件
+          reader.onload = function(arg) {
+
+            var img = '<img class="preview" src="' + arg.target.result + '" alt="preview"/>';
+            console.log(img)
+            $("#preview_box2").empty().append(img);
+          }
+        });
+        $( "#upload" ).click(function() {
+          $("#preview_box2").empty()
+          $("#preview_box2").append('<br id ="working" style="font-weight:bold">Working hard to compute the result...</br>')
+        });
+
+      </script>
+        {% if flag %}
+        <div id="afterUpload">
+          <div><img id = "uploadImg" src={{file_url}}></div>
+          <div id = "result" style="font-weight:bold">This is the emotion our system predicts: </div>
+          <div style="font-weight:bold;font-size: 30px;">{{emotion}}</div>
+          <div id = "moreImages"></div>
+        </div>
+      <script>
+        $('#working').empty()
+
+        var ori_files = "{{names}}"
+        var emoji = "{{emotion}}"
+        console.log(files)
+        var files = ori_files.split(',')
+        for(var i=0; i < files.length;i++){
+            console.log("../demo_images/"+files[i]+".jpg")
+            $('#moreImages').append('<span><img style=" margin-right:10px;width:200px;height:auto;"src="{{ url_for('static', filename='demo_images/') }}'+emoji+'/' + files[i] + '.jpg"></span>')
+        }
+
+      </script>
+        {% else %}
+        {% endif %}
+  </div>
+</body>

@@ -3,7 +3,7 @@ from libsvm import svmutil
 def predict_emotion_paef():
     model = svmutil.svm_load_model("C:/Users/Admin/PycharmProjects/Emotion_Detection/trained_models/paef_models/artphoto_train.txt.model")
     mapping = {
-        0 : "amusement",
+        0 : "happy",
         2 : "fear",
         3 : "excitement",
         4 : "disgust",

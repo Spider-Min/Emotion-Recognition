@@ -101,7 +101,7 @@ function adjust_path
 % Set Matlab path for access to libraries and image files
 
 % WINDOWS:
-addpath(genpath('C:\Users\Admin\PycharmProjects\new_flask\MATLAB\'))
+addpath(genpath('C:\Users\Admin\PycharmProjects\Emotion_Detection\MATLAB\'))
 
 
 function im = load_image(imageString,scaling_factor)
